@@ -28,8 +28,8 @@ require_once get_template_directory() . '/core/classes/class-shortcodes.php';
 require_once get_template_directory() . '/core/classes/class-thumbnail-resizer.php';
 // require_once get_template_directory() . '/core/classes/class-theme-options.php';
 // require_once get_template_directory() . '/core/classes/class-options-helper.php';
-require_once get_template_directory() . '/core/classes/class-post-type.php';
-require_once get_template_directory() . '/core/classes/class-taxonomy.php';
+ require_once get_template_directory() . '/core/classes/class-post-type.php';
+ require_once get_template_directory() . '/core/classes/class-taxonomy.php';
 // require_once get_template_directory() . '/core/classes/class-metabox.php';
 // require_once get_template_directory() . '/core/classes/abstracts/abstract-front-end-form.php';
 // require_once get_template_directory() . '/core/classes/class-contact-form.php';
@@ -289,45 +289,44 @@ require_once get_template_directory() . '/inc/plugins-support.php';
  */
 require_once get_template_directory() . '/inc/template-tags.php';
 
-function odin_product() {
-		$produto = new Odin_Post_Type(
-				'Produto', // Nome (Singular) do Post Type.
-				'produto' // Slug do Post Type.
-		);
 
-		$produto->set_labels(
-				array(
-						'menu_name' => __( 'Produto', 'odin' ),
-				)
-		);
-
-		$produto->set_arguments(
-				array(
-						'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments'),
-						'menu_icon' => 'dashicons-cart' ,
-						'menu_position' => 6
-				)
-		);
-
+function odin_product_cpt() {
+    $product = new Odin_Post_Type(
+        'Produto', // Nome (Singular) do Post Type.
+        'produto' // Slug do Post Type.
+    );
+    $product->set_labels(
+        array(
+            'menu_name' => 'Meus Produtos'
+        )
+    );
+    $args = array(
+	    'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+	    'menu_icon' =>'dashicons-cart',
+	    'menu_position'=>2
+	);
+    $product->set_arguments($args);
 }
-add_action( 'init', 'odin_product', 1 );
 
-function odin_product_cat(){
-	$produto_cat = new Odin_Taxonomy(
-			'Catego', // Nome (Singular) da nova Taxonomia.
-			'cat', // Slug do Taxonomia.
-			'produto' // Nome do tipo de conteúdo que a taxonomia irá fazer parte.
-	);
-	$produto_cat->set_labels(
-			array(
-					'menu_name' => __( 'Categoria', 'odin' )
-			)
-	);
-	$produto_cat->set_arguments(
-			array(
-					'hierarchical' => false,
-					'rewrite' => true
-			)
-	);
+add_action( 'init', 'odin_product_cpt', 1 );
+function odin_product_taxonomy() {
+    $video = new Odin_Taxonomy(
+        'Categoria', // Nome (Singular) da nova Taxonomia.
+        'categoria', // Slug do Taxonomia.
+        'produto' // Nome do tipo de conteúdo que a taxonomia irá fazer parte.
+    );
+
+    $video->set_labels(
+        array(
+            'menu_name' => __( 'Categorias', 'odin' )
+        )
+    );
+
+    $video->set_arguments(
+        array(
+            'hierarchical' => true
+        )
+    );
 }
-add_action( 'init', 'odin_product_cat', 1 );
+
+add_action( 'init', 'odin_product_taxonomy', 1 );
