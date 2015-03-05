@@ -1,0 +1,248 @@
+@import "compass";
+@import "bootstrap";
+@import "variables";
+@import "header";
+@import "footer";
+
+.unstyled {
+	padding-left: 0;
+	list-style-type: none;
+}
+#main-content {
+	position: relative;
+	z-index: 0;
+	overflow-x: hidden;
+}
+.block-title {
+	border-left: 4px solid $primary-color;
+	padding: 10px 5px 5px 7px;
+	color: $secondary-color-i;
+}
+.form-control {
+	border: 2px solid darken($default-bg, 15%) !important;
+	font-size: 18px !important;
+	min-height: 45px;
+	@include border-radius(0 !important);
+	@include box-shadow(0 0 0 !important);
+	&:focus {
+		border-color: $primary-color !important;
+	}
+}
+.button {
+	background: darken($default-bg, 5%);
+	padding: 7px 20px;
+	position: relative;
+	display: inline-block;
+	top: 0;
+	font-family: $font-josefin;
+	text-decoration: none !important;
+	color: #333;
+	font-size: 19px;
+	border: 0 none;
+	@include border-radius(2px);
+	&:hover {
+		color: #333;
+		top: -3px;
+		@include box-shadow(0px 3px 0px darken($default-bg, 10%));
+	}
+	&.button-yellow {
+		background: $secondary-color;
+		color: $primary-color-i;
+		&:hover {
+			color: $primary-color-i;
+			@include box-shadow(0px 3px 0px desaturate(darken($secondary-color, 10%), 20%));
+		}
+	}
+	&.button-blue {
+		background: $primary-color;
+		color: $primary-color-i;
+		&:hover {
+			color: $primary-color-i;
+			@include box-shadow(0px 3px 0px desaturate(darken($primary-color, 10%), 20%));
+		}
+	}
+	&.button-large {
+		font-size: 25px;
+		padding: 15px 30px;
+	}
+}
+.gallery {
+	$zoom-w: 80%;
+	$zoom-h: 3px;
+	li {
+		float: left;
+		a {
+			background: $secondary-color-i;
+			display: block;
+			position: relative;
+			text-decoration: none !important;
+			z-index: 1;
+			@include transition(all .3s ease-in-out);
+			img {
+				@include transition(all .15s ease-in-out);
+			}
+			&:hover {
+				z-index: 2;
+				@include box-shadow(3px 3px 5px rgba(0,0,0,0.1));
+				img {
+					opacity: 0.7;
+				}
+				.zoom {
+					opacity: 1;
+					visibility: visible;
+					@include transform(translateY(-50%) translateX(-50%) rotate(90deg));
+				}
+			}
+			.zoom {
+				background: rgba($secondary-color, 0.8);
+				height: 35%;
+				width: 35%;
+				top: 50%;
+				left: 50%;
+				color: transparent;
+				position: absolute;
+				z-index: 2;
+				visibility: hidden;
+				opacity: 0;
+				@include transition(all .3s ease-in-out);
+				@include border-radius(100%);
+				@include transform(translateY(-50%) translateX(-50%));
+				&:before,
+				&:after {
+					background: $primary-color-i;
+					content: "";
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					@include transform(translateY(-50%) translateX(-50%));
+				}
+				&:before {
+					width: $zoom-w;
+					height: $zoom-h;
+				}
+				&:after {
+					height: $zoom-w;
+					width: $zoom-h;
+				}
+			}
+		}
+	}
+}
+
+
+.products {
+	text-align: center;
+	.product-carousel-title {
+		position: relative;
+		display: inline-block;
+		background: $primary-color;
+		color: $primary-color-i;
+		margin-top: 50px;
+		font-family: $font-gotham-i;
+		text-transform: uppercase;
+		padding: 19px 15px 15px;
+		@include box-shadow(
+			2px 1px 0 #fff, 
+			2px -1px 0 #fff, 
+			5px 0 0 $primary-color, 
+			7px 1px 0 #fff, 
+			7px -1px 0 #fff, 
+			9px 0 0 $primary-color, 
+			11px 1px 0 #fff, 
+			11px -1px 0 #fff, 
+			12px 0 0 $primary-color,
+			-2px 1px 0 #fff, 
+			-2px -1px 0 #fff, 
+			-5px 0 0 $primary-color, 
+			-7px 1px 0 #fff, 
+			-7px -1px 0 #fff, 
+			-9px 0 0 $primary-color, 
+			-11px 1px 0 #fff, 
+			-11px -1px 0 #fff, 
+			-12px 0 0 $primary-color
+			);
+	}
+	.product-list {
+		padding: 25px 0;
+		&.owl-carousel {
+			.product {
+				width: 100%;
+				padding: 0;
+				margin-bottom: 0 !important;
+				border-bottom: 0 none !important;
+				padding-bottom: 0 none !important;
+			}
+		}
+		.owl-controls {
+			.owl-prev,
+			.owl-next {
+				background: none repeat scroll 0 0 darken($default-bg, 10%);
+			    border-radius: 3px;
+			    color: transparent;
+			    height: 110px;
+			    position: absolute;
+			    top: 190px;
+			    width: 60px;
+			    &:hover {
+			    	top: 187px;
+			    	@include box-shadow(0px 3px 0px darken($default-bg, 15%));
+			    }
+			    &:active {
+			    	top: 190px;
+			    	@include box-shadow(0px 0px 0px darken($default-bg, 15%));
+			    }
+				&:before {
+					background: url("../image/default/arrow-carousel.png") no-repeat scroll 0 center transparent;
+					bottom: 0;
+					content: "";
+					position: absolute;
+					text-indent: 0;
+					top: 0;
+					width: 29px;
+				}
+			}
+			.owl-prev {
+				left: -80px;
+			}
+			.owl-next {
+			    right: -80px;
+				&:before {
+					content: "";
+					background-position: -29px center;
+				}
+			}
+		}
+		.product {
+			margin-bottom: 50px;
+			padding-bottom: 50px;
+			.product-image {}
+			.product-extra {
+				text-align: center;
+				.product-name {
+					font-family: $font-gotham-i;
+					text-transform: uppercase;
+					position: relative;
+					display: inline-block;
+					padding: 9px 7px 7px;
+					margin-top: 5px;
+					font-size: 25px;
+					margin-bottom: 15px;
+				}
+				.product-buttons {
+					.product-link {
+						background-image: url('../image/default/arrow-next.png');
+						background-position: 111px 13px;
+					    background-repeat: no-repeat;
+					    padding: 7px 35px 7px 20px;
+						&:hover {}
+					}
+				}
+			}
+			&:hover {
+				.product-name {
+					background: #eee;
+				}
+			}
+		}
+	}
+}

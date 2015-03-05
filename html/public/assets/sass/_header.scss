@@ -1,0 +1,91 @@
+#main-header {
+	font-family: "Gotham Italic";
+	background: $default-bg;
+	position: relative;
+	z-index: 2;
+	.main-nav {
+		ul {
+			margin-bottom: 0;
+			padding: 25px 0;
+			> li {
+				position: relative;
+				display: inline-block;
+				text-align: center;
+				margin: 0 8px;
+				@media (max-width: $screen-md-max) {
+					margin: 0 2px !important;
+					> a {
+						font-size: 15px !important;
+						&:before, &:after {
+							border-width: 20px !important;
+						}
+					}
+				}
+				&:nth-child(4),
+				&:nth-child(5) {
+					float: right;
+				} 
+				&.logo {
+					position: absolute;
+					width: auto !important;
+					left: 50%;
+					top: -20px;
+					margin-left: -236px !important;
+					@include transition(top .15s ease-in-out);
+					@media (max-width: $screen-md-max) {
+						max-width: 400px;
+						margin-left: -200px !important;
+					}
+					&:hover {
+						background: transparent !important;
+						top: -10px;
+					}
+					> a {
+						&:before, &:after {
+							display: none !important;
+						}
+						background: transparent !important;
+						padding: 0 !important;
+						img {
+							width: 100%;
+						}
+						// top: -10px;
+					}
+				}
+				> a {
+					position: relative;
+					display: block;
+					text-transform: uppercase;
+					font-size: 18px;
+					padding: 10px 30px;
+					text-decoration: none !important;
+					&:before,
+					&:after {
+						content: "";
+						position: absolute;
+						top: 0;
+						border: 23px solid transparent;
+					}
+					&:before {
+						border-left-color: $default-bg;
+						left: 0;
+					}
+					&:after {
+						border-right-color: $default-bg;
+						right: 0;
+					}
+					&:hover {
+						background: darken($default-bg, 5%);
+					}
+					&:active {
+						background: darken($default-bg, 10%);
+					}
+					&.active {
+						background: $secondary-color;
+						color: $primary-color-i;
+					}
+				} 
+			}
+		}
+	}
+}

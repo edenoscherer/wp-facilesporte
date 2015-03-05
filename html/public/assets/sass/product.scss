@@ -1,0 +1,294 @@
+@import 'compass';
+@import 'bootstrap';
+@import 'variables';
+
+.products-categories {
+	.page-header {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		left: 0;
+		z-index: 2;
+		.page-title {
+			background: rgba(0,0,0,0.2);
+			color: $white-bg;
+			&:after,
+			&:before {
+				border: 48px solid transparent;
+				content: "";
+				position: absolute;
+				top: 0;
+			}
+			
+			$category-color: #F58259;
+			&:after {
+				right: 0;
+				border-right-color: $category-color;
+			}
+			$category-color: #43BFBD;
+			&:before {
+				left: 0;
+				border-left-color: $category-color;
+			}
+
+		}
+	}
+	.select-category {
+		position: relative;
+		display: block;
+		z-index: 1;
+		.category {
+			position: relative;
+			float: left;
+			width: 50%;
+			padding: 330px 0 150px;
+			text-decoration: none !important;
+			text-align: center;
+			$category-color: #43BFBD;
+			&:first-child {
+				background: $category-color;
+				.category-name {
+					@include skewY(15deg);
+					color: $category-color;
+				}
+			}
+			$category-color: #F58259;
+			&:last-child {
+				background: $category-color;
+				.category-name {
+					@include skewY(-15deg);
+					color: $category-color;
+				}
+			}
+			.content-icon {
+				position: relative;
+				display: inline-block;
+				padding: 33px;
+				@include transition(all .2s ease-in-out);
+				@include border-radius(100%);
+				&:before {
+					content: "";
+					position: absolute;
+					border: 7px dotted $white-bg;
+					opacity: 0;
+					top: -17px;
+					left: -17px;
+					right: -17px;
+					bottom: -17px;
+					@include scale(1.1);
+					@include transition(all .2s ease-in-out);
+					@include border-radius(100%);
+				}
+			}
+			.category-icon {
+				position: relative;
+				fill: $white-bg;
+				* {
+					stroke: $white-bg;
+				}
+			}
+			.category-name {
+				background: $white-bg;
+				text-transform: uppercase;
+				font-family: $font-gotham-i;
+				padding: 15px 0;
+				margin-top: 40px;
+				@include transition(all .2s ease-in-out);
+				em {
+					font-family: $font-gotham-ib;
+					font-style: normal;
+				}
+			}
+			&:hover {
+				.category-name {
+					background: rgba(0,0,0,0.2);
+					color: $white-bg
+				}
+				.content-icon {
+					background: rgba(0,0,0,0.1);
+					&:before {
+						@include scale(1);
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}
+.product {
+	.page-data {
+		margin-bottom: 70px;
+		font-size: 135%;
+		.product-images {
+			position: relative;
+			display: block;
+			.selected-image {
+				position: relative;
+				display: block;
+				img {
+					width: 100%;
+				}
+				&.is-loading {
+					.loading {
+						opacity: 1 !important;
+					}
+					&:before {
+						opacity: 1 !important;
+					}
+				}
+				.loading {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					color: $white-bg;
+					font-size: 150%;
+					z-index: 2;
+					opacity: 0;
+					@include transition(opacity .15s ease-in-out);
+					@include transform(translateX(-50%) translateY(-50%));
+				}
+				&:before {
+					opacity: 0;
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+					content: "";
+					z-index: 1;
+					background: rgba($primary-color,0.6);
+					@include transition(opacity .15s ease-in-out);
+				}
+			}
+			.image-list {
+				position: fixed;
+				bottom: 0;
+				background: rgba($white-bg, 0.8);
+				z-index: 10;
+				width: 100%;
+				&.poa {
+					position: absolute !important;
+				}
+				.container {
+					position: relative;
+					&:after,
+					&:before {
+						content: "";
+						position: absolute;
+						border: 20px solid transparent;
+					}
+					&:before {
+						top: -40px;
+						left: 30px;
+						border-bottom-color: rgba($white-bg, 0.8);
+					}
+					&:after {
+						bottom: -40px;
+						right: 30px;
+						border-top-color: rgba($white-bg, 0.8);
+					}
+				}
+				.images {
+					position: relative;
+					display: block;
+					text-align: center;
+					max-height: 110px;
+					overflow: hidden;
+					&.owl-carousel {
+						overflow: visible;
+						max-height: auto;
+					}
+					.image {
+						position: relative;
+						display: inline-block;
+						a {
+							border: 3px solid $white-bg;
+							position: relative;
+							display: block;
+							width: 100px;
+							height: 100px;
+							overflow: hidden;
+							@include border-radius(100%);
+							&.active {
+								border-color: $primary-color;
+							}
+							.image-icon {
+								position: absolute;
+								left: 0;
+								top: 0;
+								bottom: 0;
+								right: 0;
+							}
+						}
+					}
+
+					.owl-prev,
+					.owl-next {
+						background: url("../image/default/arrow-carousel-product.png") no-repeat scroll 0 center transparent;
+					    border-radius: 3px;
+					    color: transparent;
+					    height: 40px;
+					    position: absolute;
+					    top: 50%;
+					    margin-top: -20px;
+					    width: 21px;
+					    &:hover {
+							opacity: 0.8;
+					    }
+					}
+					.owl-prev {
+						left: -25px;
+					}
+					.owl-next {
+					    right: -25px;
+					    background-position: -20px center;
+					}
+				}
+				.title {
+					text-transform: uppercase;
+					font-family: $font-gotham-ib;
+					font-weight: normal;
+					color: $primary-color;
+				}
+				.go-budget {
+					background: $secondary-color;
+					color: $white-bg;
+					padding: 1px 75px 1px 15px;
+					position: relative;
+					display: block;
+					margin: 7px 0;
+					border: 2px solid $white-bg;
+					text-decoration: none !important;
+					margin-top: 20px;
+					@include transition(all .15s ease-in-out);
+					@include border-radius(3px);
+					&:hover {
+						background: $white-bg;
+						color: $secondary-color !important;
+					}
+					.title {
+						color: inherit;
+					}
+					.go-budget-icon {
+						background: url('../image/default/budget.png') no-repeat scroll center center $white-bg;
+						padding: 5px;
+						position: absolute;
+						right: 0;
+						top: 0;
+						height: 100%;
+						width: 80px;
+					}
+				}
+			}
+		}
+	}
+	.content-budget {
+		background: darken($default-bg, 4%);
+		padding-top: 25px;
+		padding-bottom: 25px;
+		padding-right: 0 !important;
+		.col-md-12 {
+			padding-right: 0 !important;
+		}
+	}
+}

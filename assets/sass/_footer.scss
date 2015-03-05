@@ -1,0 +1,93 @@
+#main-footer {
+	background: $white-bg;
+	.quick-links {
+		position: relative;
+		display: block;
+		text-align: center;
+		padding: 40px 0;
+		margin-bottom: 0;
+		li {
+			position: relative;
+			display: inline-block;
+			vertical-align: top;
+			margin: 0 20px;
+			a {
+				font-family: $font-gotham-ib;
+				text-transform: uppercase;
+				color: $primary-color;
+				font-size: 16px;
+				text-decoration: none !important;
+				position: relative;
+				display: block;
+				&:before, 
+				&:after {
+					content: "";
+					color: darken($white-bg, 20%);
+					position: absolute;
+					top: 0;
+					opacity: 0;
+					@include transition(all .15s ease-in-out);
+				}
+				&:before {
+					content: "{";
+					left: -3px;
+				}
+				&:after {
+					content: "}";
+					right: -3px;
+				}
+				&:hover {
+					&:before {
+						left: -13px;
+						opacity: 1;
+					}
+					&:after {
+						right: -13px;
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+	.copyright {
+		background: $primary-color;
+		color: $primary-color-i;
+		text-align: center;
+		padding: 20px 0;
+		span {
+			font-family: $font-gotham-i;
+			position: relative;
+			display: inline-block;
+			margin: 25px 0;
+			text-transform: uppercase;
+			font-size: 18px;
+			&:after,
+			&:before {
+				content: "";
+				width: 20px;
+				height: 1px;
+				background: $white-bg;
+				top: 50%;
+				position: absolute;
+			}
+			&:after {
+				right: -25px;
+			}
+			&:before {
+				left: -25px;
+			}
+		}
+		a {
+			&:hover {
+				img {
+					opacity: 0.8;
+				}
+			}
+		}
+		p {
+			font-family: $font-josefin;
+			font-size: 17px;
+			margin: 30px 0 15px;
+		}
+	}
+}

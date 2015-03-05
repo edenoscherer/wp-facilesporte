@@ -27,11 +27,12 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/assets/js/html5.js"></script>
 	<![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
-	<div class="container">
+	<div id="all" class="container">
 		<header id="header" role="banner">
 			<?php if ( is_home() ) : ?>
 				<h1 class="site-title"><a href="<?php echo home_url(); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>

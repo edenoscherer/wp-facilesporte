@@ -1,14 +1,3 @@
-<?php
-/**
- * The default template for displaying content.
- *
- * Used for both single and index/archive/author/catagory/search/tag.
- *
- * @package Odin
- * @since 2.2.0
- */
-?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
