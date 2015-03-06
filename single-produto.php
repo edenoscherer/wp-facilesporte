@@ -5,6 +5,7 @@
  * @package Odin
  * @since 2.2.0
  */
+echo __FILE__;
 get_header(); ?>
 
 	<div id="primary" class="">

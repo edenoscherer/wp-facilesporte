@@ -32,7 +32,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<div id="all" class="container">
+	<section id="all" class="container">
 		<header id="header" role="banner">
 			<?php if ( is_home() ) : ?>
 				<h1 class="site-title"><a href="<?php echo home_url(); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
